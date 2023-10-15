@@ -17,6 +17,8 @@ Required Structure:
 
 */
 
+import React from "react";
+import ReactDOM from 'react-dom/client';
 const parent = React.createElement(
     "div", 
     {id: "parent"},
@@ -24,16 +26,16 @@ const parent = React.createElement(
         React.createElement(
             "div",
             {id:"child"},
-            [ React.createElement("h1", {id:"heading"}, "I am h1 tag"), 
-            React.createElement("h2", {id:"heading"}, "I am h2 tag") ]
+            [ React.createElement("h1", {id:"heading"}, "I am h1 tag test123"), 
+            React.createElement("h2", {id:"heading"}, "I am h2 tag test123") ]
 
         ), 
         
         React.createElement(
             "div",
             {id:"child1"},
-            [ React.createElement("h1", {id:"heading"}, "I am h1 tag child1"), 
-            React.createElement("h2", {id:"heading"}, "I am h2 tag child1") ]
+            [ React.createElement("h1", {id:"heading"}, "I am h1 tag child1 test123"), 
+            React.createElement("h2", {id:"heading"}, "I am h2 tag child1 test123") ]
 
         ), 
 
