@@ -4,7 +4,9 @@
   "description": "This is Namaste React by Narla Kalyan Gupta",
   "main": "app.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "start": "parcel Index.html",
+    "build": "parcel build Index.html" 
   },
   "repository": {
     "type": "git",
