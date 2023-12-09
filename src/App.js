@@ -158,6 +158,11 @@ import ReactDOM from 'react-dom/client';
 const root = ReactDOM.createRoot(document.getElementById("root"));
 import Header from './Components/Header';
 import Body from './Components/Body';
+import {createBrowserRouter, RouterProvider} from 'react-router-dom';
+import About from './components/About';
+import Contact from './components/Contact';
+import Error from './components/Error';
+
 
 const AppLayout = () =>{
     return(
@@ -167,7 +172,26 @@ const AppLayout = () =>{
         </div>
     )
 }
-root.render(<AppLayout/>)
+
+const appRouter= createBrowserRouter([
+    {
+        path: "/",
+        element: <AppLayout></AppLayout>,
+        errorElement: <Error></Error>
+        
+    },
+    {
+        path: "/about",
+        element: <About></About>
+    },
+    {
+        path: "/contact",
+        element: <Contact></Contact>
+    }
+])
+
+//root.render(<AppLayout/>)
+root.render(<RouterProvider router={appRouter}></RouterProvider>)
 
 
 

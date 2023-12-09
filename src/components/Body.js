@@ -8,8 +8,10 @@ import Shimmer from './Shimmer';
 
     //State variable using useState()
     //let [listofrestaurants, setListOfRestaurants] = useState(ResList)
-    let [listofrestaurants, setListOfRestaurants] = useState([])            
+    const [listofrestaurants, setListOfRestaurants] = useState([])            
     const [searchText, setSearchText] = useState("");
+    const [filteredRestaurants, setFilteredRestaurants] = useState([]);
+
 
     //Normal JavaScript variable
     // let listofrestaurants =[
@@ -70,6 +72,7 @@ import Shimmer from './Shimmer';
         const json = await data.json();
         console.log(json);
         setListOfRestaurants(json?.data?.cards[5]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
+        setFilteredRestaurants(json?.data?.cards[5]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
       } catch(error){
         console.log(error);
       }
@@ -106,11 +109,11 @@ import Shimmer from './Shimmer';
                   console.log(searchText)
                   
                   const filteredList = listofrestaurants.filter(
-                  (res)=> {return res.info.name.includes(searchText)}
+                  (res)=> {return res.info.name.toLowerCase().includes(searchText.toLowerCase())}
                   );
                   
                   console.log(filteredList)
-                  setListOfRestaurants(filteredList);
+                  setFilteredRestaurants(filteredList);
 
                 }}>Search</button>
               
@@ -122,7 +125,8 @@ import Shimmer from './Shimmer';
                   const filteredList = listofrestaurants.filter(
                       (res) => res.info.avgRating > 4.1
                   )
-                  setListOfRestaurants(filteredList);
+                  //setListOfRestaurants(filteredList);
+                  setFilteredRestaurants(filteredList)
                 }}
               >
                 Top Rated Restaurants greater than 4.1
@@ -141,7 +145,7 @@ import Shimmer from './Shimmer';
                 }
 
                 {
-                  listofrestaurants.map((restaurant) =>
+                  filteredRestaurants.map((restaurant) =>
                     <RestaurantCard key={restaurant.info.id} resData={restaurant}/>)
                 }      
             </div>
