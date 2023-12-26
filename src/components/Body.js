@@ -88,7 +88,7 @@ import { Link } from "react-router-dom";
 
     //We can do using the ternary operator also: 
 
-    return listofrestaurants.length === 0? (
+    return !listofrestaurants || listofrestaurants.length === 0? (
     <Shimmer></Shimmer>
     ) : (
         <div className='body'>
