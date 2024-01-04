@@ -59,7 +59,7 @@ import { Link } from "react-router-dom";
     //     }
     // ]
 
-    console.log("Body rendered")
+    console.log("Body rendered123")
     useEffect(()=>{
       //console.log("UseEffect Hook called");
       fetchData();
@@ -69,11 +69,13 @@ import { Link } from "react-router-dom";
       const SwiggyApiURL = 
             "https://www.swiggy.com/dapi/restaurants/list/v5?lat=18.5879534&lng=73.7372559&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING";
       try{
-        const data = await fetch( `https://corsproxy.io/?${SwiggyApiURL}`);
+        // const data = await fetch( `https://corsproxy.io/?${SwiggyApiURL}`);
+        const data = await fetch(SwiggyApiURL);
         const json = await data.json();
         console.log(json);
-        setListOfRestaurants(json?.data?.cards[5]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
-        setFilteredRestaurants(json?.data?.cards[5]?.card?.card?.gridElements?.infoWithStyle?.restaurants)
+        setListOfRestaurants(json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+        setFilteredRestaurants(json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+        console.log(listofrestaurants);
       } catch(error){
         console.log(error);
       }
@@ -88,7 +90,7 @@ import { Link } from "react-router-dom";
 
     //We can do using the ternary operator also: 
 
-    return listofrestaurants.length === 0? (
+    return !listofrestaurants || listofrestaurants.length === 0? (
     <Shimmer></Shimmer>
     ) : (
         <div className='body'>

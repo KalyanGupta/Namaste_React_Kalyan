@@ -76,3 +76,10 @@
     display: flex;
 }
 
+.user-container{
+    border: solid 1px black;
+    margin: 20px;
+    padding: 10px;
+    text-align: center;
+}
+

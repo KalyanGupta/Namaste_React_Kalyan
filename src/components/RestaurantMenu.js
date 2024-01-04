@@ -17,7 +17,8 @@ const RestaurantMenu = () =>{
         const SwiggyURL =`https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=18.5879534&lng=73.7372559&restaurantId=${Params.resId}&catalog_qa=undefined&submitAction=ENTER`;
         console.log(SwiggyURL);
         
-        const data= await fetch(`https:corsproxy.io/?${SwiggyURL}`);
+        //const data= await fetch(`https:corsproxy.io/?${SwiggyURL}`);
+        const data= await fetch(`${SwiggyURL}`);
         const json = await data.json();
         console.log(json);
         setResInfo(json);
@@ -61,6 +62,7 @@ const RestaurantMenu = () =>{
                     </li>
                 ))}
             </ul>
+            
 
         </div>
     )
