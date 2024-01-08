@@ -1,41 +1,24 @@
-import {useState, useEffect } from "react";
 import Shimmer from "./Shimmer";
 import { useParams } from "react-router-dom";
+import useRestaurantMenu from "../utils/useRestaurantMenu";
 
 const RestaurantMenu = () =>{
-
-    const [resInfo, setResInfo] = useState(null);
-    useEffect(()=>{
-        fetchMenu();
-    },[])
-
+    // debugger;
+    console.log("RestaurantMenu");
     const Params = useParams();
-    console.log(Params.resId)
-
-    const fetchMenu = async() =>{
-        //const SwiggyURL =`https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=18.5879534&lng=73.7372559&restaurantId=${Params.resId}&catalog_qa=undefined&submitAction=ENTER`;
-        const SwiggyURL =`https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=18.5879534&lng=73.7372559&restaurantId=${Params.resId}&catalog_qa=undefined&submitAction=ENTER`;
-        console.log(SwiggyURL);
-        
-        //const data= await fetch(`https:corsproxy.io/?${SwiggyURL}`);
-        const data= await fetch(`${SwiggyURL}`);
-        const json = await data.json();
-        console.log(json);
-        setResInfo(json);
-    }
+    //console.log(Params.resId)
+    const resInfo = useRestaurantMenu(Params.resId);
+    console.log("Testt order");
 
     if (resInfo === null) 
         return <Shimmer></Shimmer>
 
-    else
-    {
-    console.log(resInfo)
-    console.log(resInfo?.data)
-    console.log(resInfo?.data?.cards[0]?.card?.card?.info?.name)
+    //console.log(resInfo)
+    //console.log(resInfo?.data)
+    //console.log(resInfo?.data?.cards[0]?.card?.card?.info?.name)
 
     const {name, cuisines, costForTwoMessage} = resInfo?.data?.cards[0]?.card?.card?.info;
-    const {itemCards} = resInfo?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2]?.card?.card || {itemCards: ["abc", "def"]};
-    //const {itemCards} = {itemCards: ["abc", "def"]};
+    const {itemCards} = resInfo?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2]?.card?.card;
     console.log(itemCards);
 
     return  (
@@ -47,7 +30,6 @@ const RestaurantMenu = () =>{
             </p>
 
             <h2>Menu</h2>
-
             <ul>
                 {itemCards.map((items)=>(
                     <li key={items.card.info.id}>
@@ -62,10 +44,7 @@ const RestaurantMenu = () =>{
                     </li>
                 ))}
             </ul>
-            
-
         </div>
     )
-                }
 }
 export default RestaurantMenu;

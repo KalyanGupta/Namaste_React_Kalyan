@@ -3,10 +3,10 @@ import RestaurantCard from "./RestaurantCard";
 import {useState, useEffect} from 'react';
 import Shimmer from './Shimmer';
 import { Link } from "react-router-dom";
+import useOnlineStatus from "../utils/useOnlineStatus";
 
 
  const Body = () =>{
-
     //State variable using useState()
     //let [listofrestaurants, setListOfRestaurants] = useState(ResList)
     const [listofrestaurants, setListOfRestaurants] = useState([])            
@@ -73,14 +73,21 @@ import { Link } from "react-router-dom";
         const data = await fetch(SwiggyApiURL);
         const json = await data.json();
         console.log(json);
-        setListOfRestaurants(json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
-        setFilteredRestaurants(json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+        setListOfRestaurants(json?.data?.cards[5]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+        setFilteredRestaurants(json?.data?.cards[5]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
         console.log(listofrestaurants);
       } catch(error){
         console.log(error);
       }
       
     }
+
+    const onlineStatus = useOnlineStatus();
+    console.log(onlineStatus);
+    if(onlineStatus === false)
+    return (
+      <h1>Oops!! you lost your internet connection, please check your internet connection</h1>
+    )
        
     //Conditional Rendering
     // if(listofrestaurants.length === 0)
