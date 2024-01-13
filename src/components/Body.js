@@ -73,8 +73,8 @@ import useOnlineStatus from "../utils/useOnlineStatus";
         const data = await fetch(SwiggyApiURL);
         const json = await data.json();
         console.log(json);
-        setListOfRestaurants(json?.data?.cards[5]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
-        setFilteredRestaurants(json?.data?.cards[5]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+        setListOfRestaurants(json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
+        setFilteredRestaurants(json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
         console.log(listofrestaurants);
       } catch(error){
         console.log(error);
@@ -102,18 +102,18 @@ import useOnlineStatus from "../utils/useOnlineStatus";
     ) : (
         <div className='body'>
             
-            <div className='search-filter'>
+            <div className='search-filter flex'>
               
-              <div className="search">
-                
-                <input type="text" className="search-box" value={searchText}
+              <div className="m-4 p-4">
+               
+                <input type="text" className="border border-solid border-black" value={searchText}
                 onChange={(e)=>{
                   console.log(e.target.value)
                   setSearchText(e.target.value)
                 }}
 
                 />
-                <button
+                <button className="bg-green-200 px-4 m-2 rounded-lg"
                 onClick={()=>{
                   //Filter the listofrestaurants and update the UI.
                   console.log(searchText)
@@ -129,22 +129,23 @@ import useOnlineStatus from "../utils/useOnlineStatus";
               
               </div>
                 
-              <button 
-                className="filter-btn" 
-                onClick={()=>{
-                  const filteredList = listofrestaurants.filter(
-                      (res) => res.info.avgRating > 4.1
-                  )
-                  //setListOfRestaurants(filteredList);
-                  setFilteredRestaurants(filteredList)
-                }}
-              >
-                Top Rated Restaurants greater than 4.1
-              </button>
-
+              <div className="m-4 p-4 flex items-center" >
+                <button 
+                      className="px-4 m-2 bg-gray-200 rounded-lg" 
+                      onClick={()=>{
+                        const filteredList = listofrestaurants.filter(
+                            (res) => res.info.avgRating > 4.1
+                        )
+                        //setListOfRestaurants(filteredList);
+                        setFilteredRestaurants(filteredList)
+                      }}
+                    >
+                      Top Rated Restaurants greater than 4.1
+                </button>
+              </div>
             </div>
             
-            <div className='res-container'>
+            <div className="flex flex-wrap">
                 {/* Restaurant Cards */}
                 {
                 /* <RestaurantCard resData={ResList[0]}/>
