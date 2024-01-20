@@ -2,8 +2,13 @@ import { LOGO_URL } from "../utils/constants";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
+import UserContext from "../utils/UserContext";
+import { useContext } from "react";
 
 const Header = () =>{
+    const data = useContext(UserContext);
+    //console.log(data);
+    
     const[logButton, setLogButton] = useState("Login")
     const ButtonClick = () =>{
         // if(logButton=="Login")
@@ -35,7 +40,8 @@ const Header = () =>{
                     <li className="px-4"><Link to="/contact">Contact US</Link></li>
                     <li className="px-4"><Link to="/grocery">Grocery</Link></li>
                     <li className="px-4">Cart</li>
-                    <button className="px-4" onClick={ButtonClick}>{logButton}</button>         
+                    <button className="px-4" onClick={ButtonClick}>{logButton}</button> 
+                    <li className="px-4">{data.loggedInUserName}</li>        
                 </ul>      
             </div>
 

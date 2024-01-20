@@ -1,9 +1,10 @@
-import RestaurantCard from "./RestaurantCard";
+import RestaurantCard, {withRecommendedLabel} from "./RestaurantCard";
 //import ResList from "../utils/MockData";
-import {useState, useEffect} from 'react';
+import {useState, useEffect, useContext} from 'react';
 import Shimmer from './Shimmer';
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
+import UserContext from "../utils/UserContext";
 
 
  const Body = () =>{
@@ -12,6 +13,10 @@ import useOnlineStatus from "../utils/useOnlineStatus";
     const [listofrestaurants, setListOfRestaurants] = useState([])            
     const [searchText, setSearchText] = useState("");
     const [filteredRestaurants, setFilteredRestaurants] = useState([]);
+    const RestaurantCardRecommended = withRecommendedLabel(RestaurantCard);
+    const data = useContext(UserContext);
+    const {loggedInUserName, setUserName} = data;
+
 
 
     //Normal JavaScript variable
@@ -143,6 +148,18 @@ import useOnlineStatus from "../utils/useOnlineStatus";
                       Top Rated Restaurants greater than 4.1
                 </button>
               </div>
+
+
+              <div className="m-4 p-4 flex items-center" >
+                <label className="font-bold">UserName: </label>
+                <input type="text" className="border border-black p-1"
+                value={loggedInUserName}
+                onChange={(e)=> setUserName(e.target.value)}
+                />
+              </div>
+
+
+              
             </div>
             
             <div className="flex flex-wrap">
@@ -157,7 +174,12 @@ import useOnlineStatus from "../utils/useOnlineStatus";
 
                 {
                   filteredRestaurants.map((restaurant) =>
-                   <Link to={"/restaurants/"+ restaurant.info.id}><RestaurantCard key={restaurant.info.id} resData={restaurant}/></Link>
+                    <Link to={"/restaurants/"+ restaurant.info.id} key={ restaurant.info.id}> 
+                      {
+        restaurant.info.avgRating>=4.2?<RestaurantCardRecommended resData={restaurant}/> : <RestaurantCard key={restaurant.info.id} resData={restaurant}/>
+                      }
+                      
+                    </Link>
                    )
                 }      
             </div>
