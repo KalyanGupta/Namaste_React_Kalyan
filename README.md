@@ -36,3 +36,12 @@ refreshed automatically.
 
 
 
+# Redux ToolKit
+
+ - Install @reduxjs/toolkit and react-redux.
+ - Build our store.
+ - Connect our store to our app.
+ - Create Slice (Cart Slice)
+ - Dispatch an action.
+ - Read data using the selector
+ 

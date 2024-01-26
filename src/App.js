@@ -167,6 +167,10 @@ import Error from './components/Error';
 import RestaurantMenu from './components/RestaurantMenu';
 import Shimmer from './components/Shimmer';
 import UserContext from './utils/UserContext';
+import { Provider } from 'react-redux';
+import appStore from './utils/appStore';
+import Cart from './components/Cart';
+import Checkout from './components/Checkout';
 
 //import Grocery from './components/Grocery';
 
@@ -181,20 +185,22 @@ const AppLayout = () =>{
     /*Assume: Make an API call by sending user name and password and API returned us the username */ 
 
         const data = {
-            name: "Narla Kalyan Gupta"
+            name: "Kalyan"
             };    
         setUserName(data.name)
     }, [])
 
     return(
-        <UserContext.Provider value={ {loggedInUserName: userName, setUserName} }> 
+        <Provider store={appStore}>
+
+            <UserContext.Provider value={ {loggedInUserName: userName, setUserName} }> 
             <div className='app'> 
                 <Header/>
                 <Outlet/>      
             </div>
-        </UserContext.Provider>
-       
-            
+            </UserContext.Provider>
+
+        </Provider>
         
     )
 }
@@ -225,6 +231,14 @@ const appRouter= createBrowserRouter([
             {
                 path: "/restaurants/:resId",
                 element: <RestaurantMenu></RestaurantMenu>
+            },
+            {
+                path: "/cart",
+                element: <Cart></Cart>
+            },
+            {
+                path: "/checkout",
+                element: <Checkout></Checkout>
             }
         ],
         errorElement: <Error></Error>

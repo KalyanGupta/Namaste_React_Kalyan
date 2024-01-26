@@ -13,11 +13,11 @@ const RestaurantCategory = (props) =>{
             {/* Acccordian Header */}
 
             <div className="w-6/12 bg-gray-200 my-4 mx-auto shadow-lg p-4 cursor-pointer" 
-            onClick={handleClick}>
+            >
 
                 <div className="flex justify-between">
                     <span className="font-bold">{data.title} ({data.itemCards.length})</span>
-                    <span>{arrow}</span>
+                    <span  onClick={handleClick}>{arrow}</span>
                 </div>
 
                 {/* Accordian Body */}

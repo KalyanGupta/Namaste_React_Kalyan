@@ -4,8 +4,12 @@ import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
 import UserContext from "../utils/UserContext";
 import { useContext } from "react";
+import { useSelector } from "react-redux";
 
 const Header = () =>{
+    const cartItems = useSelector((store)=> store.cart.items);
+    console.log(cartItems);
+
     const data = useContext(UserContext);
     //console.log(data);
     
@@ -39,9 +43,9 @@ const Header = () =>{
                     <li className="px-4"><Link to="/about"> About Us </Link></li>
                     <li className="px-4"><Link to="/contact">Contact US</Link></li>
                     <li className="px-4"><Link to="/grocery">Grocery</Link></li>
-                    <li className="px-4">Cart</li>
+                    <li className="px-4"><Link to="/cart">Cart - {cartItems.length}</Link></li>
                     <button className="px-4" onClick={ButtonClick}>{logButton}</button> 
-                    <li className="px-4">{data.loggedInUserName}</li>        
+                    <li className="px-4 font-bold">{data.loggedInUserName}</li>        
                 </ul>      
             </div>
 

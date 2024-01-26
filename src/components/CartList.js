@@ -1,15 +1,15 @@
 import { CDN_URL, LOGO_URL } from "../utils/constants"
-import {addItem} from "../utils/cartSlice";
+//import { addItem } from "../utils/cartSlice"
+import {removeItem} from "../utils/cartSlice";
 import {useDispatch} from 'react-redux';
-const ItemsList = (props) =>{
+const CartList = (props) =>{
     const {items} = props
    // console.log(items)
    const dispatch = useDispatch();
 
-   const handleAddItem = (item) =>{
-    dispatch(addItem(item));
+   const handleRemoveItem = (item) =>{
+    dispatch(removeItem(item));
    }
-   
     return(
         <div>
            {
@@ -43,9 +43,10 @@ const ItemsList = (props) =>{
                         <button 
                             className=" bg-black text-white shadow-lg absolute mx-1 rounded-lg
                             font-bold"
-                            onClick={() => handleAddItem(item)}>
-                            Add +
+                            onClick={() => handleRemoveItem(item)}>
+                            remove -
                         </button>
+
 
 
                         <img 
@@ -65,4 +66,4 @@ const ItemsList = (props) =>{
         </div>
     )
 }
-export default ItemsList;
+export default CartList;

@@ -136,23 +136,23 @@ import UserContext from "../utils/UserContext";
                 
               <div className="m-4 p-4 flex items-center" >
                 <button 
-                      className="px-4 m-2 bg-gray-200 rounded-lg" 
+                      className="px-4 m-2 bg-green-200 rounded-lg" 
                       onClick={()=>{
                         const filteredList = listofrestaurants.filter(
-                            (res) => res.info.avgRating > 4.1
+                            (res) => res.info.avgRating > 4.0
                         )
                         //setListOfRestaurants(filteredList);
                         setFilteredRestaurants(filteredList)
                       }}
                     >
-                      Top Rated Restaurants greater than 4.1
+                      Top Rated Restaurants
                 </button>
               </div>
 
 
               <div className="m-4 p-4 flex items-center" >
                 <label className="font-bold">UserName: </label>
-                <input type="text" className="border border-black p-1"
+                <input type="text" className="border border-black m-2"
                 value={loggedInUserName}
                 onChange={(e)=> setUserName(e.target.value)}
                 />
@@ -171,12 +171,17 @@ import UserContext from "../utils/UserContext";
                  */
                 // Instead of manually displaying each RestaurantCard we can iterate them using map. 
                 }
-
+                
                 {
-                  filteredRestaurants.map((restaurant) =>
+                filteredRestaurants.length==0 ? 
+                
+                <h1 className="font-bold text-center">No results found 😢 please search for other restaurants</h1> 
+                
+                
+                : filteredRestaurants.map((restaurant) =>
                     <Link to={"/restaurants/"+ restaurant.info.id} key={ restaurant.info.id}> 
                       {
-        restaurant.info.avgRating>=4.2?<RestaurantCardRecommended resData={restaurant}/> : <RestaurantCard key={restaurant.info.id} resData={restaurant}/>
+        restaurant.info.avgRating>=4.5?<RestaurantCardRecommended resData={restaurant}/> : <RestaurantCard key={restaurant.info.id} resData={restaurant}/>
                       }
                       
                     </Link>
