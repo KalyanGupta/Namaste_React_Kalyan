@@ -8,7 +8,7 @@ import { useSelector } from "react-redux";
 
 const Header = () =>{
     const cartItems = useSelector((store)=> store.cart.items);
-    console.log(cartItems);
+    //console.log(cartItems);
 
     const data = useContext(UserContext);
     //console.log(data);
@@ -24,7 +24,7 @@ const Header = () =>{
     const tickMark = "☑️";
     const redCircle = "🔴";
     const onlineStatus = useOnlineStatus();
-    console.log(onlineStatus);
+    //console.log(onlineStatus);
     return(
         <div className=
         "flex justify-between bg-pink-100 shadow-lg items-center sm:bg-yellow-100 lg:bg-green-100"> 
@@ -43,7 +43,7 @@ const Header = () =>{
                     <li className="px-4"><Link to="/about"> About Us </Link></li>
                     <li className="px-4"><Link to="/contact">Contact US</Link></li>
                     <li className="px-4"><Link to="/grocery">Grocery</Link></li>
-                    <li className="px-4"><Link to="/cart">Cart - {cartItems.length}</Link></li>
+                    <li className="px-4"><Link to="/cart">Cart - {cartItems.length} Items</Link></li>
                     <button className="px-4" onClick={ButtonClick}>{logButton}</button> 
                     <li className="px-4 font-bold">{data.loggedInUserName}</li>        
                 </ul>      

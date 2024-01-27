@@ -64,7 +64,7 @@ import UserContext from "../utils/UserContext";
     //     }
     // ]
 
-    console.log("Body rendered123")
+    //console.log("Body rendered123")
     useEffect(()=>{
       //console.log("UseEffect Hook called");
       fetchData();
@@ -77,18 +77,18 @@ import UserContext from "../utils/UserContext";
         // const data = await fetch( `https://corsproxy.io/?${SwiggyApiURL}`);
         const data = await fetch(SwiggyApiURL);
         const json = await data.json();
-        console.log(json);
+        //console.log(json);
         setListOfRestaurants(json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
         setFilteredRestaurants(json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle?.restaurants);
-        console.log(listofrestaurants);
+        //console.log(listofrestaurants);
       } catch(error){
-        console.log(error);
+       // console.log(error);
       }
       
     }
 
     const onlineStatus = useOnlineStatus();
-    console.log(onlineStatus);
+    //console.log(onlineStatus);
     if(onlineStatus === false)
     return (
       <h1>Oops!! you lost your internet connection, please check your internet connection</h1>
@@ -101,7 +101,7 @@ import UserContext from "../utils/UserContext";
     // }
 
     //We can do using the ternary operator also: 
-
+    
     return !listofrestaurants || listofrestaurants.length === 0? (
     <Shimmer></Shimmer>
     ) : (
@@ -113,21 +113,23 @@ import UserContext from "../utils/UserContext";
                
                 <input type="text" className="border border-solid border-black" value={searchText}
                 onChange={(e)=>{
-                  console.log(e.target.value)
+                  //console.log(e.target.value)
                   setSearchText(e.target.value)
                 }}
+
+                data-testid = "searchInput"
 
                 />
                 <button className="bg-green-200 px-4 m-2 rounded-lg"
                 onClick={()=>{
                   //Filter the listofrestaurants and update the UI.
-                  console.log(searchText)
+                 // console.log(searchText)
                   
                   const filteredList = listofrestaurants.filter(
                   (res)=> {return res.info.name.toLowerCase().includes(searchText.toLowerCase())}
                   );
                   
-                  console.log(filteredList)
+                 // console.log(filteredList)
                   setFilteredRestaurants(filteredList);
 
                 }}>Search</button>
@@ -152,7 +154,7 @@ import UserContext from "../utils/UserContext";
 
               <div className="m-4 p-4 flex items-center" >
                 <label className="font-bold">UserName: </label>
-                <input type="text" className="border border-black m-2"
+                <input type="text" className="border border-black m-2 pl-2"
                 value={loggedInUserName}
                 onChange={(e)=> setUserName(e.target.value)}
                 />

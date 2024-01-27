@@ -6,7 +6,8 @@
   "scripts": {
     "test": "jest",
     "start": "parcel Index.html",
-    "build": "parcel build Index.html"
+    "build": "parcel build Index.html",
+    "watch-test": "jest --watch"
   },
   "repository": {
     "type": "git",
@@ -19,6 +20,14 @@
   },
   "homepage": "https://github.com/KalyanGupta/Namaste_React_Kalyan#readme",
   "devDependencies": {
+    "@babel/core": "^7.23.9",
+    "@babel/preset-env": "^7.23.9",
+    "@babel/preset-react": "^7.23.3",
+    "@testing-library/jest-dom": "^6.3.0",
+    "@testing-library/react": "^14.1.2",
+    "babel-jest": "^29.7.0",
+    "jest": "^29.7.0",
+    "jest-environment-jsdom": "^29.7.0",
     "postcss": "^8.4.33",
     "process": "^0.11.10",
     "tailwindcss": "^3.4.1"
