@@ -2,11 +2,11 @@ import { useState, useEffect } from "react";
 
 const useRestaurantMenu = (resId) =>{
     const [resInfo, setResInfo] = useState(null);
-    console.log(resInfo);
-    console.log("useRestaurantMenuu");
+    //console.log(resInfo);
+    //console.log("useRestaurantMenuu");
 
     useEffect(()=>{
-        console.log("useEffect called");
+      //  console.log("useEffect called");
         fetchMenu();
     }, [])
 
@@ -23,7 +23,7 @@ const useRestaurantMenu = (resId) =>{
     }
 
     const summ= sum(1,2);
-    console.log(summ);
+    //console.log(summ);
 
     return resInfo;
 

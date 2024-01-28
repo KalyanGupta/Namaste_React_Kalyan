@@ -12,8 +12,7 @@ const RestaurantCategory = (props) =>{
         <div>
             {/* Acccordian Header */}
 
-            <div className="w-6/12 bg-gray-200 my-4 mx-auto shadow-lg p-4 cursor-pointer" 
-            >
+            <div className="w-6/12 bg-gray-200 my-4 mx-auto shadow-lg p-4 cursor-pointer">
 
                 <div className="flex justify-between">
                     <span className="font-bold">{data.title} ({data.itemCards.length})</span>
@@ -23,6 +22,7 @@ const RestaurantCategory = (props) =>{
                 {/* Accordian Body */}
 
                 {arrow== "⬆️" ? <ItemsList items={data.itemCards}></ItemsList>: ""}
+
             </div>
                 
             

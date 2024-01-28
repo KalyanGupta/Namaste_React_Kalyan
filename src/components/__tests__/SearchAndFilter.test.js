@@ -5,8 +5,6 @@ import { act } from "react-dom/test-utils";
 import { BrowserRouter } from "react-router-dom";
 import "@testing-library/jest-dom";
 
-
-
 global.fetch = jest.fn(() =>{
   return Promise.resolve({
     json: () => {
@@ -14,6 +12,23 @@ global.fetch = jest.fn(() =>{
     }
   })
 })
+
+beforeAll(()=>{
+  console.log("beforeAll")
+})
+
+beforeEach(()=>{
+  console.log("beforeEach")
+})
+
+afterAll(()=>{
+  console.log("afterAll")
+})
+
+afterEach(()=>{
+  console.log("AfterEach")
+})
+
 
 test("Should search RsList for the pizza text input", async ()=>{
 

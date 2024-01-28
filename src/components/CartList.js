@@ -18,6 +18,7 @@ const CartList = (props) =>{
                 <div 
                   key={item.card.info.id}
                   className="m-2 p-2  border-gray-400 border-b-2 text-left flex justify-between"
+                  data-testid= "cartItems"
                 >       
                     <div className="w-9/12">
                         <div className="py-2">
